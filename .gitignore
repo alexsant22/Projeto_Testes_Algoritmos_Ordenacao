@@ -1,0 +1,25 @@
+# Binários e executáveis
+*.exe
+*.out
+*.o
+*.obj
+ordenador
+teste
+
+# Pastas de build (caso venha a usar)
+build/
+bin/
+obj/
+
+# Arquivos de editor / IDE
+.vscode/
+*.suo
+*.user
+
+# Arquivos de sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs e temporários
+*.log
+*.tmp
