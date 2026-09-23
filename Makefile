@@ -1,3 +1,7 @@
+// Na raiz do projeto use o seguinte comando para compilar o projeto:
+// gcc -Wall -Wextra -Iinclude -std=c11 src/main.c src/vetor.c -o teste
+// ./teste
+
 CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude -std=c11
 OBJS = src/main.o src/vetor.o src/metricas.o src/algoritmos.o
