@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "vetor.h"
-#include "metricas.h"
+#include "../include/vetor.h"
+#include "../include/metricas.h"
 
 int main(void)
 {
@@ -13,16 +13,16 @@ int main(void)
     imprimir_vetor(vetor, tamanho);
 
     Metricas m;
-    metricas_iniciar(&m, "Bubble Sort"); /* nome placeholder ate o algoritmo existir */
+    metricas_iniciar(&m, "Bubble Sort");
 
     metricas_iniciar_cronometro();
 
-    /* TODO: chamar o algoritmo de ordenacao aqui, passando &m
-       Ex: bubble_sort(vetor, tamanho, &m); */
+    //chamando o vetor de ordenação
+    //bubble_sort(vetor, tamanho, &m);
 
     metricas_parar_cronometro(&m);
 
-    printf("\nVetor apos ordenacao (ainda sem ordenacao real):\n");
+    printf("\nVetor apos Bubble Sort:\n");
     imprimir_vetor(vetor, tamanho);
 
     metricas_imprimir(&m);
