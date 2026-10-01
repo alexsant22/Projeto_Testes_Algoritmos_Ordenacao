@@ -1,5 +1,63 @@
 #include <stdlib.h>
-#include "../include/algoritimos.h"
+#include "../include/algoritmos.h"
+
+/* ---------- Insertion Sort ----------
+   Convencao de contagem:
+   - comparacao: cada vez que a chave e comparada com um elemento do vetor
+   - troca: cada deslocamento de elemento uma posicao para a direita */
+void insertion_sort(int *vetor, int tamanho, Metricas *m)
+{
+    for (int i = 1; i < tamanho; i++)
+    {
+        int chave = vetor[i];
+        int j = i - 1;
+
+        while (j >= 0)
+        {
+            metricas_incrementar_comparacao(m);
+            if (vetor[j] > chave)
+            {
+                vetor[j + 1] = vetor[j];
+                metricas_incrementar_troca(m);
+                j--;
+            }
+            else
+            {
+                break;
+            }
+        }
+        vetor[j + 1] = chave;
+    }
+}
+
+/* ---------- Selection Sort ----------
+   Convencao de contagem:
+   - comparacao: cada vez que vetor[j] e comparado com o menor atual
+   - troca: cada troca efetiva entre vetor[i] e vetor[posMenor] */
+void selection_sort(int *vetor, int tamanho, Metricas *m)
+{
+    for (int i = 0; i < tamanho - 1; i++)
+    {
+        int posMenor = i;
+
+        for (int j = i + 1; j < tamanho; j++)
+        {
+            metricas_incrementar_comparacao(m);
+            if (vetor[j] < vetor[posMenor])
+            {
+                posMenor = j;
+            }
+        }
+
+        if (i != posMenor)
+        {
+            int aux = vetor[i];
+            vetor[i] = vetor[posMenor];
+            vetor[posMenor] = aux;
+            metricas_incrementar_troca(m);
+        }
+    }
+}
 
 // Função de ordenação Bubble Sort
 void bubble_sort(int *vetor, int tamanho, Metricas *m)
@@ -8,7 +66,7 @@ void bubble_sort(int *vetor, int tamanho, Metricas *m)
     {
         for (int j = 0; j < tamanho - 1 - i; j++)
         {
-            metrica_incrementar_comparacao(m);
+            metricas_incrementar_comparacao(m);
 
             if (vetor[j] > vetor[j + 1])
             {
@@ -17,14 +75,14 @@ void bubble_sort(int *vetor, int tamanho, Metricas *m)
                 vetor[j] = vetor[j + 1];
                 vetor[j + 1] = temp;
 
-                metrica_incrementar_troca(m);
+                metricas_incrementar_troca(m);
             }
         }
     }
 }
 
 // Função particionar do Quick Sort
-/*int particionar(int *vetor, int inicio, int fim, Metricas *m)
+int particionar(int *vetor, int inicio, int fim, Metricas *m)
 {
     int pivo = vetor[fim];
 
@@ -32,7 +90,7 @@ void bubble_sort(int *vetor, int tamanho, Metricas *m)
 
     for (int j = inicio; j < fim; j++)
     {
-        metrica_incrementar_comparacao(m);
+        metricas_incrementar_comparacao(m);
 
         if (vetor[j] <= pivo)
         {
@@ -45,7 +103,7 @@ void bubble_sort(int *vetor, int tamanho, Metricas *m)
                 vetor[i] = vetor[j];
                 vetor[j] = temp;
 
-                metrica_incrementar_troca(m);
+                metricas_incrementar_troca(m);
             }
         }
     }
@@ -57,7 +115,7 @@ void bubble_sort(int *vetor, int tamanho, Metricas *m)
         vetor[i + 1] = vetor[fim];
         vetor[fim] = temp;
 
-        metrica_incrementar_troca(m);
+        metricas_incrementar_troca(m);
     }
 
     return i + 1;
@@ -97,9 +155,9 @@ void quick_sort(int *vetor, int tamanho, Metricas *m)
         0,
         tamanho - 1,
         m);
-}*/
+}
 
-/*
+
 
 // Merge Sort
 void merge(
@@ -119,7 +177,7 @@ void merge(
 
     while (i <= meio && j <= fim)
     {
-        metrica_incrementar_comparacao(m);
+        metricas_incrementar_comparacao(m);
 
         if (vetor[i] <= vetor[j])
         {
@@ -153,7 +211,7 @@ void merge(
     {
         vetor[i] = temp[k];
 
-        metrica_incrementar_troca(m);
+        metricas_incrementar_troca(m);
     }
 
     free(temp);
@@ -199,4 +257,4 @@ void merge_sort(int *vetor, int tamanho, Metricas *m)
         0,
         tamanho - 1,
         m);
-}*/
+}
